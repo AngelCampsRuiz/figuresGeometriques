@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Validar el formulario completo cada vez que se actualice un campo
         validateForm();
     }
-
     // Función para validar todo el formulario
     function validateForm() {
         const inputs = form.querySelectorAll('input');
