@@ -4,7 +4,24 @@ if (!isset($_SESSION['tipoFigura'])) {
     header("Location: index.php");
     exit();
 }
-$tipoFigura = $_SESSION['tipoFigura'];
+
+$tipoFiguraActual = $_SESSION['tipoFigura'];
+$tipoFiguraAnterior = isset($_SESSION['tipoFiguraAnterior']) ? $_SESSION['tipoFiguraAnterior'] : '';
+
+// Si el tipo de figura ha cambiado, resetear las dimensiones
+if ($tipoFiguraActual !== $tipoFiguraAnterior) {
+    unset($_SESSION['lado1']);
+    unset($_SESSION['lado2']);
+    unset($_SESSION['lado3']);
+}
+
+// Guardar el tipo de figura actual como anterior para la próxima verificación
+$_SESSION['tipoFiguraAnterior'] = $tipoFiguraActual;
+
+// Recuperamos los valores de los costados de la sesión, si existen
+$lado1 = isset($_SESSION['lado1']) ? $_SESSION['lado1'] : '';
+$lado2 = isset($_SESSION['lado2']) ? $_SESSION['lado2'] : '';
+$lado3 = isset($_SESSION['lado3']) ? $_SESSION['lado3'] : '';
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -18,39 +35,39 @@ $tipoFigura = $_SESSION['tipoFigura'];
 <body>
     <div class="container mt-5">
         <div class="card shadow p-4">
-            <h1 class="text-center mb-4">Introduïu les dimensions per a un <?= ucfirst($tipoFigura) ?></h1>
+            <h1 class="text-center mb-4">Introduïu les dimensions per a un <?= ucfirst($tipoFiguraActual) ?></h1>
             <form id="dimensionForm" action="resultats.php" method="post">
-                <?php if ($tipoFigura == 'cuadrado' || $tipoFigura == 'circulo'): ?>
+                <?php if ($tipoFiguraActual == 'cuadrado' || $tipoFiguraActual == 'circulo'): ?>
                     <div class="mb-3">
                         <label for="lado1" class="form-label">Costat o Radi:</label>
-                        <input type="number" name="lado1" id="lado1" class="form-control" onblur="validateField(this)">
+                        <input type="number" name="lado1" id="lado1" class="form-control" value="<?= htmlspecialchars($lado1) ?>" onblur="validateField(this)">
                         <div class="text-danger" id="error-lado1"></div>
                     </div>
-                <?php elseif ($tipoFigura == 'rectangulo'): ?>
+                <?php elseif ($tipoFiguraActual == 'rectangulo'): ?>
                     <div class="mb-3">
                         <label for="lado1" class="form-label">Costat 1:</label>
-                        <input type="number" name="lado1" id="lado1" class="form-control" onblur="validateField(this)" >
+                        <input type="number" name="lado1" id="lado1" class="form-control" value="<?= htmlspecialchars($lado1) ?>" onblur="validateField(this)">
                         <div class="text-danger" id="error-lado1"></div>
                     </div>
                     <div class="mb-3">
                         <label for="lado2" class="form-label">Costat 2:</label>
-                        <input type="number" name="lado2" id="lado2" class="form-control" onblur="validateField(this)">
+                        <input type="number" name="lado2" id="lado2" class="form-control" value="<?= htmlspecialchars($lado2) ?>" onblur="validateField(this)">
                         <div class="text-danger" id="error-lado2"></div>
                     </div>
-                <?php elseif ($tipoFigura == 'triangulo'): ?>
+                <?php elseif ($tipoFiguraActual == 'triangulo'): ?>
                     <div class="mb-3">
                         <label for="lado1" class="form-label">Costat 1:</label>
-                        <input type="number" name="lado1" id="lado1" class="form-control" onblur="validateField(this)" >
+                        <input type="number" name="lado1" id="lado1" class="form-control" value="<?= htmlspecialchars($lado1) ?>" onblur="validateField(this)">
                         <div class="text-danger" id="error-lado1"></div>
                     </div>
                     <div class="mb-3">
                         <label for="lado2" class="form-label">Costat 2:</label>
-                        <input type="number" name="lado2" id="lado2" class="form-control" onblur="validateField(this)" >
+                        <input type="number" name="lado2" id="lado2" class="form-control" value="<?= htmlspecialchars($lado2) ?>" onblur="validateField(this)">
                         <div class="text-danger" id="error-lado2"></div>
                     </div>
                     <div class="mb-3">
                         <label for="lado3" class="form-label">Costat 3:</label>
-                        <input type="number" name="lado3" id="lado3" class="form-control" onblur="validateField(this)" >
+                        <input type="number" name="lado3" id="lado3" class="form-control" value="<?= htmlspecialchars($lado3) ?>" onblur="validateField(this)">
                         <div class="text-danger" id="error-lado3"></div>
                     </div>
                 <?php endif; ?>

@@ -11,6 +11,9 @@ $tipoFigura = $_SESSION['tipoFigura'];
 $lado1 = $_POST['lado1'];
 $figura = null;
 
+// Guardamos el lado1 en la sesión
+$_SESSION['lado1'] = $lado1;
+
 if ($tipoFigura == 'cuadrado') {
     $figura = new Cuadrado($lado1);
 } elseif ($tipoFigura == 'circulo') {
@@ -18,10 +21,13 @@ if ($tipoFigura == 'cuadrado') {
 } elseif ($tipoFigura == 'rectangulo') {
     $lado2 = $_POST['lado2'];
     $figura = new Rectangulo($lado1, $lado2);
+    $_SESSION['lado2'] = $lado2; // Guardamos lado2 en la sesión
 } elseif ($tipoFigura == 'triangulo') {
     $lado2 = $_POST['lado2'];
     $lado3 = $_POST['lado3'];
     $figura = new Triangulo($lado1, $lado2, $lado3);
+    $_SESSION['lado2'] = $lado2; // Guardamos lado2 y lado3 en la sesión
+    $_SESSION['lado3'] = $lado3;
 }
 
 $area = $figura->calcularArea();
@@ -44,7 +50,7 @@ $perimetre = $figura->calcularPerimetre();
             <table class="table table-bordered">
                 <tr>
                     <th>Àrea</th>
-                    <td><?= number_format($area, 2) ?>cm²</td>
+                    <td><?= number_format($area, 2) ?> cm²</td>
                 </tr>
                 <tr>
                     <th>Perímetre</th>
