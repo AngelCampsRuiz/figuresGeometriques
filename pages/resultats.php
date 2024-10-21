@@ -44,11 +44,11 @@ $perimetre = $figura->calcularPerimetre();
             <table class="table table-bordered">
                 <tr>
                     <th>Àrea</th>
-                    <td><?= number_format($area, 2) ?> u²</td>
+                    <td><?= number_format($area, 2) ?>cm²</td>
                 </tr>
                 <tr>
                     <th>Perímetre</th>
-                    <td><?= number_format($perimetre, 2) ?> u</td>
+                    <td><?= number_format($perimetre, 2) ?> cm</td>
                 </tr>
             </table>
             <a href="index.php" class="btn btn-secondary w-100">Tornar a la selecció</a>
