@@ -1,21 +1,91 @@
 body {
     background-color: #f8f9fa;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-h1 {
-    color: #343a40;
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../css/fondo.jpg'); /* Cambia la imagen si es necesario */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .card {
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2); /* Fondo más transparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border: none;
 }
 
-.btn {
-    border-radius: 50px;
+/* Estilos para inputs y select con transparencia */
+input, select {
+    background: rgba(255, 255, 255, 0.25); /* Fondo semitransparente */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Bordes transparentes */
+    color: #ffffff; /* Texto blanco */
+    backdrop-filter: blur(5px); /* Desenfoque */
+    -webkit-backdrop-filter: blur(5px);
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: none;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra azul suave en el foco */
+}
+
+/* Botones también con transparencia */
+button {
+    background: rgba(255, 255, 255, 0.25); /* Fondo semitransparente */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff; /* Texto blanco */
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    border-radius: 30px;
+    width: 100%;
+    box-shadow: none;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+h1 {
+    color: #ffffff; /* Color blanco */
+}
+
+.text-danger {
+    color: #ff4d4d; /* Color para los mensajes de error */
 }
 
 .table th, .table td {
     vertical-align: middle;
     text-align: center;
+}
+label {
+    color: #f8f9fa;
 }
